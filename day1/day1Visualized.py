@@ -145,7 +145,7 @@ class PairingApp:
             distance = abs(self.sorted_left[i] - self.sorted_right[i])
             total_distance += distance
             self.draw_timeline(i, total_distance=total_distance)
-            time.sleep(0.1)
+            time.sleep(0.01)
 
         self.info_label.config(text=f"Part 1 Complete! Total Distance: {total_distance}", font=("Arial", 20, "bold"))
         self.restart_button.pack()
@@ -157,7 +157,7 @@ class PairingApp:
             matches = self.right_list.count(self.sorted_left[i])
             similarity_score += self.sorted_left[i] * matches
             self.draw_timeline(i, similarity_score=similarity_score)
-            time.sleep(0.1)
+            time.sleep(0.01)
 
         self.info_label.config(
             text=f"Part 2 Complete! Total Similarity Score: {similarity_score}", font=("Arial", 20, "bold")
