@@ -1,10 +1,23 @@
-# Path: day3/day3.py
-# Author: thebo
-# Date: 2024-12-01 10:13:47.845306
-#
-# Problem:
-#
-# Solution:
-#
-#
-# Part 2
+import re
+
+file = open("day3.txt", "r")
+
+lines = file.read()
+
+p1 = 0
+for i in re.findall(r'mul\(\d+,\d+\)', lines):
+    i = [int(x) for x in i.replace("mul(","").replace(")","").split(",")]
+    p1 += (i[0] * i[1])
+print(p1)
+
+p2 = [re.findall(r'(.*?)do\(', lines, re.DOTALL)[0]] #before a do or dont
+p2 += re.findall(r'do\((.*?)don\'t\(\)', lines, re.DOTALL) #everything else
+print("section per line")
+for section in p2:
+    print(section)
+    print("--------")
+p2 = [re.findall(r'mul\(\d+,\d+\)', x) for x in p2]
+p2 = [item for sublist in p2 for item in sublist]
+p2 = [[int(x) for x in i.replace("mul(","").replace(")","").split(",")] for i in p2]
+p2 = [i[0] * i[1] for i in p2]
+print(sum(p2))
