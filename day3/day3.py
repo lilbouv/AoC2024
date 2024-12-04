@@ -10,12 +10,8 @@ for i in re.findall(r'mul\(\d+,\d+\)', lines):
     p1 += (i[0] * i[1])
 print(p1)
 
-p2 = [re.findall(r'(.*?)do\(', lines, re.DOTALL)[0]] #before a do or dont
-p2 += re.findall(r'do\((.*?)don\'t\(\)', lines, re.DOTALL) #everything else
-print("section per line")
-for section in p2:
-    print(section)
-    print("--------")
+lines = "do()"+lines #its on by default so just make it do first XD?
+p2 = re.findall(r'do\((.*?)don\'t\(\)', lines, re.DOTALL)
 p2 = [re.findall(r'mul\(\d+,\d+\)', x) for x in p2]
 p2 = [item for sublist in p2 for item in sublist]
 p2 = [[int(x) for x in i.replace("mul(","").replace(")","").split(",")] for i in p2]
